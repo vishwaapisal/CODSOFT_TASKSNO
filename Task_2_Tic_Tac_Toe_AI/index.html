@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CODSOFT Task 2 - Tic-Tac-Toe AI using the Minimax algorithm">
+  <title>Tic-Tac-Toe AI | CODSOFT Task 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div>
+          <h1>Tic-Tac-Toe <span>AI</span></h1>
+          <p>CODSOFT • Task 2</p>
+        </div>
+      </div>
+      <div class="status-pill" id="statusPill">
+        <span class="status-dot"></span>
+        <span id="statusText">Ready to play</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MINIMAX INTELLIGENCE</p>
+        <h2>Can you beat the machine?</h2>
+        <p class="hero-copy">Play against an unbeatable AI powered by the Minimax search algorithm.</p>
+      </div>
+      <div class="algorithm-card">
+        <span class="algorithm-icon">⌬</span>
+        <div>
+          <strong>Minimax</strong>
+          <small>Optimal decision making</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-layout">
+      <aside class="panel side-panel">
+        <div class="panel-heading">
+          <div>
+            <span class="panel-kicker">MATCH</span>
+            <h3>Scoreboard</h3>
+          </div>
+          <button class="icon-button" id="resetScoreBtn" title="Reset score" aria-label="Reset score">↻</button>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-card player-card">
+            <div class="avatar x-avatar">X</div>
+            <div class="score-name">You</div>
+            <div class="score" id="playerScore">0</div>
+          </div>
+          <div class="score-card draw-card">
+            <div class="avatar draw-avatar">=</div>
+            <div class="score-name">Draws</div>
+            <div class="score" id="drawScore">0</div>
+          </div>
+          <div class="score-card ai-card">
+            <div class="avatar o-avatar">O</div>
+            <div class="score-name">AI</div>
+            <div class="score" id="aiScore">0</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="control-block">
+          <div class="control-label">
+            <span>Your mark</span>
+            <span class="muted">Choose one</span>
+          </div>
+          <div class="mark-toggle">
+            <button class="mark-btn active" data-mark="X">X</button>
+            <button class="mark-btn" data-mark="O">O</button>
+          </div>
+        </div>
+
+        <div class="control-block">
+          <div class="control-label">
+            <span>Difficulty</span>
+            <span class="badge">UNBEATABLE</span>
+          </div>
+          <div class="difficulty">
+            <span>Minimax AI</span>
+            <span>●</span>
+          </div>
+        </div>
+
+        <button class="new-game-btn" id="newGameBtn">
+          <span>New Game</span>
+          <span class="arrow">→</span>
+        </button>
+      </aside>
+
+      <section class="panel board-panel">
+        <div class="board-header">
+          <div>
+            <span class="panel-kicker">CURRENT MATCH</span>
+            <h3 id="roundTitle">Your turn</h3>
+          </div>
+          <div class="turn-indicator" id="turnIndicator">
+            <span class="turn-symbol">X</span>
+            <span id="turnText">YOUR MOVE</span>
+          </div>
+        </div>
+
+        <div class="board-wrap">
+          <div class="board" id="board" role="grid" aria-label="Tic-Tac-Toe board">
+            <button class="cell" data-index="0" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="1" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="2" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="3" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="4" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="5" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="6" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="7" role="gridcell" aria-label="Empty"></button>
+            <button class="cell" data-index="8" role="gridcell" aria-label="Empty"></button>
+          </div>
+        </div>
+
+        <div class="game-message" id="gameMessage" aria-live="polite">
+          <span class="message-icon">✦</span>
+          <span id="messageText">Make your first move.</span>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <span>Built for <strong>CODSOFT AI Internship</strong></span>
+      <span>•</span>
+      <span>Rule-based game logic + Minimax AI</span>
+    </footer>
+  </main>
+
+  <div class="modal-backdrop" id="resultModal" aria-hidden="true">
+    <div class="result-modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="result-icon" id="resultIcon">✦</div>
+      <p class="eyebrow">ROUND COMPLETE</p>
+      <h2 id="resultTitle">You win!</h2>
+      <p id="resultSubtitle">Excellent move.</p>
+      <button class="new-game-btn" id="modalNewGame">Play Again <span class="arrow">→</span></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

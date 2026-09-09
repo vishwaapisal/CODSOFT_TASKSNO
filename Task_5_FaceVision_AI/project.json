@@ -1,0 +1,15 @@
+{
+  "project": "CODSOFT Task 5 - FaceVision AI Complete",
+  "features": [
+    "image detection",
+    "image recognition",
+    "camera enrollment",
+    "camera testing",
+    "live camera recognition",
+    "video file analysis"
+  ],
+  "models": [
+    "YuNet",
+    "SFace"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "project": "CODSOFT Task 2 - Tic-Tac-Toe AI",
+  "algorithm": "Minimax",
+  "frontend": [
+    "HTML",
+    "CSS",
+    "JavaScript"
+  ],
+  "run": "Open index.html in a modern browser"
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodSoft Bot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <main class="terminal">
+    <div class="titlebar">
+      <div class="dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="titlebar-label">codsoft-bot — zsh</span>
+      <span class="titlebar-status" id="status">● online</span>
+    </div>
+
+    <div class="chat-log" id="chatLog">
+      <div class="message bot">
+       <span class="prefix">bot@codsoft:~$</span>
+<span class="text">Hello. I am CodSoft Bot, a rule-based AI assistant. </span>
+      </div>
+    </div>
+
+    <form class="input-row" id="chatForm" autocomplete="off">
+      <span class="prompt">&gt;</span>
+      <input type="text" id="userInput" placeholder="Type a message…" autofocus />
+      <button type="submit" aria-label="Send">Send</button>
+    </form>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

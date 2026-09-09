@@ -1,0 +1,318 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0f1d;
+  color: #e6f1ff;
+  font-family: "IBM Plex Mono", "Inter", monospace;
+  overflow: hidden;
+}
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.terminal {
+  width: min(90vw, 760px);
+  background: rgba(13, 18, 31, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(8, 12, 20, 0.7);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(17, 24, 39, 0.9);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #ffbd2f; }
+.dot-green { background: #28c840; }
+
+.titlebar-label {
+  flex: 1;
+  color: #cddcff;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.titlebar-status {
+  color: #7ae582;
+  font-size: 0.75rem;
+}
+
+.chat-log {
+  min-height: 330px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 18px 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-log::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-log::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+}
+
+.message {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.6;
+  font-size: 0.92rem;
+  word-wrap: break-word;
+}
+
+.message .prefix {
+  color: #8ef7b8;
+  white-space: nowrap;
+}
+
+.message .text {
+  color: #edf6ff;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.user .prefix {
+  color: #7dd3fc;
+}
+
+.message.user .text {
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #d9ecff;
+}
+
+.message.bot .text em {
+  color: #7dd3fc;
+  font-style: normal;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px 18px;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.prompt {
+  color: #8ef7b8;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.input-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #f5faff;
+  outline: none;
+  font-size: 0.98rem;
+  font-family: "IBM Plex Mono", "Inter", monospace;
+}
+
+.input-row input::placeholder {
+  color: rgba(148, 163, 184, 0.75);
+}
+
+.input-row button {
+  border: none;
+  background: linear-gradient(135deg, #2563eb, #8b5cf6);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-family: "IBM Plex Mono", "Inter", monospace;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-row button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+}
+
+.typing {
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .terminal {
+    width: 95vw;
+    border-radius: 12px;
+  }
+
+  .titlebar {
+    padding: 10px 12px;
+  }
+
+  .chat-log {
+    padding: 14px 12px 8px;
+  }
+
+  .input-row {
+    padding: 12px;
+  }
+
+  .message {
+    font-size: 0.82rem;
+  }
+}
+
+/* ===== LIGHTGREEN UI/UX REFRESH ===== */
+:root{
+  --lg:#8cff9a;
+  --lg-strong:#4fe36a;
+  --lg-soft:#caffd0;
+  --ink:#102015;
+  --muted:#5e7063;
+  --surface:#ffffff;
+  --surface-2:#f4fbf5;
+  --line:#d8eadb;
+  --shadow:0 24px 70px rgba(54,105,65,.14);
+}
+body{
+  background:
+    radial-gradient(circle at 10% 10%,rgba(140,255,154,.32),transparent 28%),
+    radial-gradient(circle at 90% 90%,rgba(79,227,106,.18),transparent 30%),
+    linear-gradient(145deg,#effff1,#f8fff9 55%,#e9faec);
+  color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif;
+  overflow:auto;
+}
+.scanlines{display:none}
+.terminal{
+  width:min(940px,calc(100% - 32px));
+  background:rgba(255,255,255,.94);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+.titlebar{
+  padding:16px 20px;
+  background:linear-gradient(90deg,#f2fff4,#ffffff);
+  border-bottom:1px solid var(--line);
+}
+.dot-red{background:#ff8b82}.dot-yellow{background:#ffd66b}.dot-green{background:var(--lg-strong)}
+.titlebar-label{color:#26372b;font-family:"Inter",sans-serif;font-weight:700}
+.titlebar-status{color:#28a83e;font-weight:700}
+.chat-log{
+  min-height:390px;
+  max-height:60vh;
+  padding:26px;
+  background:linear-gradient(180deg,#fbfffb,#f4fbf5);
+}
+.message{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  max-width:82%;
+  margin:0 0 16px;
+  padding:13px 16px;
+  border-radius:16px;
+  line-height:1.55;
+  box-shadow:0 5px 18px rgba(44,90,52,.06);
+}
+.message.bot{
+  background:#fff;
+  border:1px solid var(--line);
+  color:#26382b;
+}
+.message.user{
+  margin-left:auto;
+  background:linear-gradient(135deg,#8cff9a,#62eb78);
+  color:#102015;
+  border:0;
+}
+.prefix{font-weight:800;color:#32a848;white-space:nowrap}
+.message.user .prefix{color:#176c27}
+.text{font-family:"Inter",sans-serif}
+.input-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:16px;
+  background:#fff;
+  border-top:1px solid var(--line);
+}
+.prompt{color:#31b348;font-weight:900}
+.input-row input{
+  flex:1;
+  border:1px solid var(--line);
+  background:#f8fff9;
+  color:#17241b;
+  border-radius:14px;
+  padding:14px 16px;
+  outline:none;
+  font:500 14px "Inter",sans-serif;
+}
+.input-row input:focus{
+  border-color:#68e978;
+  box-shadow:0 0 0 4px rgba(140,255,154,.22);
+}
+.input-row button{
+  border:0;
+  border-radius:14px;
+  padding:13px 22px;
+  background:#61e977;
+  color:#103318;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+}
+.input-row button:hover{transform:translateY(-1px);background:#4fe36a}
+@media(max-width:650px){
+ .terminal{width:calc(100% - 18px);border-radius:18px}
+ .chat-log{padding:16px}
+ .message{max-width:94%}
+ .input-row{padding:12px}
+}
